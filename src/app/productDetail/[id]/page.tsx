@@ -8,6 +8,7 @@ export default async function Page({
   const { id } = await params;
   const data = await fetch("http://localhost:3000/api/productListApi");
   const product = await data.json();
+  const productId = parseInt(id, 10) - 1;
   console.log(product);
   return (
     <div>
@@ -15,8 +16,8 @@ export default async function Page({
       <div>
         <ItemCard
           id={id}
-          title={product[id].title}
-          description={product[id].description}
+          title={product[productId].title}
+          description={product[productId].description}
         />
       </div>
     </div>
