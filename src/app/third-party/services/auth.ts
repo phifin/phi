@@ -41,22 +41,23 @@ export const signInWithWallet = async (
   }
 };
 
-// export const signInWithGoogle = async (token: string) => {
-//   try {
-//     const response = await fetch(`${BASE_URL}/sign-in/google`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         token,
-//       }),
-//     });
+export const signInWithGoogle = async (idToken: string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/sign-in/google`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token: idToken }),
+    });
 
-//     if (!response.ok) throw new Error("Sign-in failed");
-//     return await response.json();
-//   } catch (error) {
-//     console.error("Error in signInWithWallet:", error);
-//     throw error;
-//   }
-// };
+    if (!response.ok) {
+      throw new Error("Sign-in failed with google");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error in signInWithBackend:", error);
+    throw error;
+  }
+};

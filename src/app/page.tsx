@@ -1,3 +1,4 @@
+import GoogleLogin from "@/context/useGoogle";
 import MetaMaskConnect from "@/context/useWallet";
 import Link from "next/link";
 import React from "react";
@@ -13,6 +14,9 @@ export default async function page() {
       </div>
       <div className="p-3 col-span-2 mt-16">
         <MetaMaskConnect />
+      </div>
+      <div className="p-3 col-span-2 mt-16">
+        <GoogleLogin />
       </div>
     </div>
   );
