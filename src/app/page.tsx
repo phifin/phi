@@ -1,3 +1,4 @@
+import MetaMaskConnect from "@/context/useWallet";
 import Link from "next/link";
 import React from "react";
 
@@ -9,6 +10,9 @@ export default async function page() {
       </div>
       <div className="hover:bg-amber-300">
         <Link href="/tab2">Tab2</Link>
+      </div>
+      <div className="p-3 col-span-2 mt-16">
+        <MetaMaskConnect />
       </div>
     </div>
   );
