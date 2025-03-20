@@ -11,24 +11,24 @@ import {
 
 export default function UseThirdWebLogin() {
   const { connect, isConnecting } = useConnect();
-  const [walletAddress, setWalletAddress] = useState<string>(""); // Address as string
+  const [walletAddress, setWalletAddress] = useState<string>("");
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
   const connectMetaMask = async () => {
     try {
-      // Create MetaMask wallet instance
+      // Create wallet
       const wallet = createWallet("io.metamask");
 
       // Connect the wallet and get the account
       const account = await wallet.connect({ client });
-      const address = account.address; // Get the wallet address as a string
+      const address = account.address;
       setWalletAddress(address);
 
-      // Fetch message and nonce from your backend
+      // Fetch message and nonce
       const signMessageData = await getSignedMessage(address);
       const { message, nonce } = signMessageData.data;
 
-      // Sign the message using Thirdweb's signMessage
+      // Sign the message
       let signature;
       try {
         signature = await account.signMessage({ message });
@@ -54,9 +54,9 @@ export default function UseThirdWebLogin() {
       <button
         onClick={connectMetaMask}
         disabled={isConnecting}
-        className="p-3 rounded-xl text-white bg-blue-600 hover:bg-blue-700"
+        className="p-3 rounded-xl text-white bg-green-700 hover:bg-green-800"
       >
-        {isConnecting ? "Connecting..." : "Connect MetaMask"}
+        {isConnecting ? "Connecting..." : "Connect MetaMask by thirdweb"}
       </button>
       {walletAddress && <p>Connected Wallet: {walletAddress}</p>}
       {accessToken && <p>Access Token: {accessToken}</p>}
