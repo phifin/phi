@@ -59,12 +59,12 @@ const MetaMaskConnect: React.FC = () => {
       // sign message
       let signature;
       try {
-        console.log("🔹 Requesting MetaMask to sign message...");
+        console.log("Requesting MetaMask to sign message...");
         signature = await ethWindow.ethereum.request({
           method: "personal_sign",
           params: [message, publicAddress],
         });
-        console.log("✅ Signature received:", signature);
+        console.log("Signature received:", signature);
       } catch (err) {
         console.error("Error signing message:", err);
         alert("Signing failed: " + err.message);
